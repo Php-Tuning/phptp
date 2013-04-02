@@ -10,7 +10,7 @@ class db_mysql extends db {
     }
 
     function __construct(){
-    	$§this->set_requirement('db', 'mysql');
+    	$this->set_requirement('db', 'mysql');
     }
 
     function set_connections($connections, $connection_types = ''){
