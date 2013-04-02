@@ -2,17 +2,19 @@
 
 /**
  * Redirect Cache Klasse
- * Autor: Andreas Höhne
- * 		  Webdesign Höhne
+ * Autor: Andreas Hï¿½hne
+ * 		  Webdesign Hï¿½hne
  *
  * Feel free to use this Code on your website, reselling is not allowed
  *
  * Aufruf:
- include ('includes/modules/redirect_cache.class.php');
- $redirect_cache = new redirect_cache;
+ include ('includes/modules/phptp.class.php');
+ $phptp = new phptp;
+ $phptp->load_module('redirect_cache');
+ $redirect_cache = $phptp->module['redirect_cache'];
  $redirect_cache->set_cache_folder('writeperm/redirect_cache/');
  $redirect_cache->set_cache_time(60*60*24);
- #$redirect_cache->set_debug(1);
+ #$phptp->set_debug(1);
  $redirect_cache->do_redirect();
 
  * Cache schreiben:
@@ -92,10 +94,10 @@ class redirect_cache extends phptp{
 			if ($fo->file_exists($this->cachefile)){
 				if ($fo->filetime($this->cachefile) >= ( time() - $this->cache_time )
 				&& $fo->filesize($this->cachefile) >= 1){
-					#if ($this->debug==1)die('Dateigrösse und Zeit stimmt');
+					#if ($this->debug==1)die('Dateigrï¿½sse und Zeit stimmt');
 					return TRUE;
 				}else{
-					#if ($this->debug==1)die('Dateigrösse und Zeit stimmt nicht');
+					#if ($this->debug==1)die('Dateigrï¿½sse und Zeit stimmt nicht');
 				}
 			}else{
 				#if ($this->debug==1)die('Datei nicht vorhanden');
