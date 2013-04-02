@@ -5,10 +5,6 @@ class db_mysql extends db {
 	private $connection = array();
 	private $connection_type = array();
 
-    function db_mysql() {
-
-    }
-
     function __construct(){
     	$this->set_requirement('db', 'mysql');
     }
