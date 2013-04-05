@@ -33,6 +33,14 @@ class phptp {
     public function get_debug(){
     	return $this->debug;
     }
+    
+    function true_false_define($value){
+        if ($value == 1 || $value == true){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 
     public function load_module($module){
 		if (!isset($this->module[$module])){
@@ -59,7 +67,7 @@ class phptp {
 	}
 
 	function check_requirements(){
-		// Todo Check: Alle benötigten Module geladen?
+		// Todo Check: Alle benï¿½tigten Module geladen?
 	}
 
 	public function throw_exception($error_subject, $error_message=''){

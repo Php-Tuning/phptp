@@ -64,11 +64,11 @@ class fileoperations extends phptp{
     		return $this->file_exists_check[$filename];
     	}else{
     		if (!$ret = is_file($filename)){
-	    		$this->file_exists_check[$filename] = false;
-	    		return false;
+	    		$this->file_exists_check[$filename] = phptp::true_false_define(false);
+	    		return $this->file_exists_check[$filename];
 	    	}else{
-	    		$this->file_exists_check[$filename] = true;
-	    		return true;
+	    		$this->file_exists_check[$filename] = phptp::true_false_define(true);
+	    		return $this->file_exists_check[$filename];
 	    	}
     	}
     }

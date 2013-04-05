@@ -30,7 +30,7 @@ class db extends phptp {
     }
 
     public function set_db_type($db_type = 'db_mysql') {
-		$this->set_requirement('db_mysql', false);
+		$this->set_requirement('db_mysql', phptp::true_false_define(false));
 		$this->modules_file('db_mysql', 'db/db_mysql.class.php');
 		$this->db_type = $db_type;
 		$this->load_module($db_type);

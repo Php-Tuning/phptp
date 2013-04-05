@@ -32,7 +32,7 @@ class redirect_cache extends phptp{
 	private $cachefile;
 	private $cache_time;
 	private $redirect_type = 'permanent';
-	private $hash_requested = FALSE;
+	private $hash_requested = 0;
 
     function redirect_cache() {
     	$this->request_domain = $_SERVER['SERVER_NAME'];
@@ -95,7 +95,7 @@ class redirect_cache extends phptp{
 				if ($fo->filetime($this->cachefile) >= ( time() - $this->cache_time )
 				&& $fo->filesize($this->cachefile) >= 1){
 					#if ($this->debug==1)die('Dateigr�sse und Zeit stimmt');
-					return TRUE;
+					return phptp::true_false_define(true);
 				}else{
 					#if ($this->debug==1)die('Dateigr�sse und Zeit stimmt nicht');
 				}
@@ -105,24 +105,24 @@ class redirect_cache extends phptp{
 		}else{
 			#if ($this->debug==1)die('Verzeichnis nicht vorhanden');
 		}
-		return FALSE;
+		return phptp::true_false_define(false);
     }
 
     function request_hash(){
-    	if ($this->hash_requested == FALSE){
+    	if ($this->hash_requested == 0){
     		$this->request_hash_subfolder = md5($this->request_domain);
 	    	$this->request_hash_filename = md5($this->request_path).'.url';
 	    	$this->cachefile = $this->cache_folder.
 	    		$this->request_hash_subfolder.
 				'/'.$this->request_hash_filename;
-			$this->hash_requested = TRUE;
+			$this->hash_requested = phptp::true_false_define(true);
     	}
     }
 
     function do_redirect(){
     	if ($this->defect != 1){
     		$this->request_hash();
-	    	if ($this->check_file() == TRUE){
+	    	if ($this->check_file() == 1){
 	    		$target_url = $this->read_file($this->cachefile);
 	    		if ($target_url != ''){
 	    			if ($this->redirect_type == 'permanent' || $this->redirect_type == 301){
