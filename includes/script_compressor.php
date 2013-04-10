@@ -29,9 +29,10 @@ if (!preg_match('/(^[\/])/', $file_tmp, $ret)) {
 }
 
 if ( $file == '' || !@file_exists($file) ) {
-  #header("Location: http://www.hosterplus.de/fehler404.php");
   header("HTTP/1.1 404 file not found");
   echo "404 - File not found";
+  # use this to define a 404 error document if it isn't setted in .htaccess
+  #header("Location: http://www.domain.de/fehler404.php");
 } elseif ( $file != '' ) {
   $filedate = filectime($file); //letzte Änderung an der Datei
   $etag = strtolower(md5_file($file)); //md5-Hash der Datei als eindeutiger Etag

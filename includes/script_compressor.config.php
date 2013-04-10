@@ -2,9 +2,6 @@
 /*
  * Created on 26.03.2013
  * by PHP-Tuning.de
- *
- * To change the template for this generated file go to
- * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
 
 $allowed_paths[] = '/js\//';
