@@ -1,0 +1,24 @@
+#Security Options
+<files config.php>
+Order deny,allow
+deny from all
+</files>
+<files connect.php>
+Order deny,allow
+deny from all
+</files>
+
+#Turn on Rewrite engine
+RewriteEngine on
+
+# Caching
+RewriteCond %{REQUEST_URI} ^/includes/js/(.*)
+RewriteRule ^(.*) /includes/script_compressor.php?img=js/%1  [L]
+RewriteCond %{REQUEST_URI} ^/thumbs/(.*)
+RewriteRule ^(.*) /includes/script_compressor.php?img=../thumbs/%1  [L]
+RewriteCond %{REQUEST_URI} ^/image1.jpg
+RewriteRule ^(.*) /includes/script_compressor.php?img=../image1.jpg  [L]
+
+# Caching Tiny Icons
+RewriteCond %{REQUEST_URI} ^/includes/tiny_mce/plugins/emotions/img/(.*)$
+RewriteRule ^(.*) /includes/script_compressor.php?img=./tiny_mce/plugins/emotions/img/%1  [L]
