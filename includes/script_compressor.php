@@ -25,7 +25,7 @@ if (!preg_match('/(^[\/])/', $file_tmp, $ret)) {
   if (!isset($mimetypes[$extension])){
   	$mime = $mimetypes[$extension];
   }
-  $file = "./" . $file_tmp; //pfad anpassen, wenn ntig.
+  $file = "./" . $file_tmp; // change path if needed
 }
 
 if ( $file == '' || !@file_exists($file) ) {
@@ -34,8 +34,8 @@ if ( $file == '' || !@file_exists($file) ) {
   # use this to define a 404 error document if it isn't setted in .htaccess
   #header("Location: http://www.domain.de/fehler404.php");
 } elseif ( $file != '' ) {
-  $filedate = filectime($file); //letzte Änderung an der Datei
-  $etag = strtolower(md5_file($file)); //md5-Hash der Datei als eindeutiger Etag
+  $filedate = filectime($file); // last changes on file
+  $etag = strtolower(md5_file($file)); // create md5 hash tag for unique key
 
   $modified = true;
 
