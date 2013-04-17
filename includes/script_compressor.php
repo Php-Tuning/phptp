@@ -11,7 +11,8 @@ include_once('script_compressor.config.php');
 $file = "";
 $chk = preg_replace($allowed_paths, '', $file_tmp);
 if (!preg_match('/(^[\/])/', $file_tmp, $ret)) {
-  preg_match('/(.*)\.(jpg|jpeg|png|gif|ico|css|js)/', $file_tmp, $ret);
+	$ret = preg_replace('/\?(.*)/', '', $ret);
+	preg_match('/(.*)\.(jpg|jpeg|png|gif|ico|css|js)/', $file_tmp, $ret);
 	$extension = '';
 	if (isset($ret[2])){
 		$extension = strtolower($ret[2]);
@@ -25,17 +26,16 @@ if (!preg_match('/(^[\/])/', $file_tmp, $ret)) {
   if (!isset($mimetypes[$extension])){
   	$mime = $mimetypes[$extension];
   }
-  $file = "./" . $file_tmp; // change path if needed
+  $file = "./" . $file_tmp; //pfad anpassen, wenn ntig.
 }
 
 if ( $file == '' || !@file_exists($file) ) {
+  #header("Location: http://www.hosterplus.de/fehler404.php");
   header("HTTP/1.1 404 file not found");
   echo "404 - File not found";
-  # use this to define a 404 error document if it isn't setted in .htaccess
-  #header("Location: http://www.domain.de/fehler404.php");
 } elseif ( $file != '' ) {
-  $filedate = filectime($file); // last changes on file
-  $etag = strtolower(md5_file($file)); // create md5 hash tag for unique key
+  $filedate = filectime($file); //letzte Änderung an der Datei
+  $etag = strtolower(md5_file($file)); //md5-Hash der Datei als eindeutiger Etag
 
   $modified = true;
 
