@@ -3,7 +3,8 @@
 #################
 
 *.pydevproject
-.project
+#.project
+/.idea/
 .metadata
 bin/
 tmp/
