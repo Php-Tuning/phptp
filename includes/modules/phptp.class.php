@@ -5,7 +5,7 @@ class phptp {
 	private $modules_file;
 	public $module;
 
-	function phptp() {
+	function __construct() {
 		$this->set_module_requirement('phptp', false);
 		$this->set_module_requirement('db', false);
 		$this->set_module_file('db', 'db.class.php');
